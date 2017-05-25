@@ -17,4 +17,5 @@ Bind `DeferredTaskServlet` to `DeferredTaskContext.DEFAULT_DEFERRED_URL` (`/_ah/
 
 # Changelog
 
+* 1.0.1 - Fallback to no credentials if can't create application default credentials
 * 1.0.0 - Initial release
