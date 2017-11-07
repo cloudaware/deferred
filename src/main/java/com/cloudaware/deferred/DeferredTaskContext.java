@@ -7,8 +7,8 @@ import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.cloudtasks.v2beta2.CloudTasks;
 import com.google.api.services.cloudtasks.v2beta2.CloudTasksScopes;
+import com.google.api.services.cloudtasks.v2beta2.model.AppEngineHttpRequest;
 import com.google.api.services.cloudtasks.v2beta2.model.AppEngineRouting;
-import com.google.api.services.cloudtasks.v2beta2.model.AppEngineTaskTarget;
 import com.google.api.services.cloudtasks.v2beta2.model.CreateTaskRequest;
 import com.google.api.services.cloudtasks.v2beta2.model.Task;
 import com.google.common.collect.Maps;
@@ -98,32 +98,32 @@ public final class DeferredTaskContext {
             final Task task = taskArg == null ? new Task() : taskArg;
 
             final Map<String, String> headers =
-                    task.getAppEngineTaskTarget() == null
-                            || task.getAppEngineTaskTarget().getHeaders() == null
+                    task.getAppEngineHttpRequest() == null
+                            || task.getAppEngineHttpRequest().getHeaders() == null
                             ? Maps.<String, String>newHashMap()
-                            : task.getAppEngineTaskTarget().getHeaders();
+                            : task.getAppEngineHttpRequest().getHeaders();
             //set values if not exist
             headers.put("content-type", RUNNABLE_TASK_CONTENT_TYPE);
-            if (task.getAppEngineTaskTarget() == null) {
-                task.setAppEngineTaskTarget(new AppEngineTaskTarget());
+            if (task.getAppEngineHttpRequest() == null) {
+                task.setAppEngineHttpRequest(new AppEngineHttpRequest());
             }
-            task.getAppEngineTaskTarget().setHeaders(headers);
-            task.getAppEngineTaskTarget().setRelativeUrl(DEFAULT_DEFERRED_URL);
-            task.getAppEngineTaskTarget().setHttpMethod("POST");
-            task.getAppEngineTaskTarget().setPayload(com.google.api.client.util.Base64.encodeBase64String(convertDeferredTaskToPayload(deferredTask)));
+            task.getAppEngineHttpRequest().setHeaders(headers);
+            task.getAppEngineHttpRequest().setRelativeUrl(DEFAULT_DEFERRED_URL);
+            task.getAppEngineHttpRequest().setHttpMethod("POST");
+            task.getAppEngineHttpRequest().setPayload(com.google.api.client.util.Base64.encodeBase64String(convertDeferredTaskToPayload(deferredTask)));
             /**
              * Cloud Task Routing Start
              */
-            if (task.getAppEngineTaskTarget().getAppEngineRouting() == null) {
-                task.getAppEngineTaskTarget().setAppEngineRouting(new AppEngineRouting());
+            if (task.getAppEngineHttpRequest().getAppEngineRouting() == null) {
+                task.getAppEngineHttpRequest().setAppEngineRouting(new AppEngineRouting());
             }
             String version = System.getenv("GAE_VERSION");
             version = version == null ? "default" : version;
             String service = System.getenv("GAE_SERVICE");
             service = service == null ? "default" : service;
             String backend = null;
-            if (task.getAppEngineTaskTarget().getHeaders() != null) {
-                backend = task.getAppEngineTaskTarget().getHeaders().get("Host");
+            if (task.getAppEngineHttpRequest().getHeaders() != null) {
+                backend = task.getAppEngineHttpRequest().getHeaders().get("Host");
             }
             //try to extract version and service from backend if on prod env
             if (backend != null && backend.contains(".")) {
@@ -137,11 +137,11 @@ public final class DeferredTaskContext {
                     service = parts[2];
                 }
             }
-            if (task.getAppEngineTaskTarget().getAppEngineRouting().getService() == null) {
-                task.getAppEngineTaskTarget().getAppEngineRouting().setService(service);
+            if (task.getAppEngineHttpRequest().getAppEngineRouting().getService() == null) {
+                task.getAppEngineHttpRequest().getAppEngineRouting().setService(service);
             }
-            if (task.getAppEngineTaskTarget().getAppEngineRouting().getVersion() == null) {
-                task.getAppEngineTaskTarget().getAppEngineRouting().setVersion(version);
+            if (task.getAppEngineHttpRequest().getAppEngineRouting().getVersion() == null) {
+                task.getAppEngineHttpRequest().getAppEngineRouting().setVersion(version);
             }
             /**
              * Cloud Task Routing End
