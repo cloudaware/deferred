@@ -34,16 +34,10 @@ public final class DeferredTaskContext {
     public static final String DEFERRED_TASK_RESPONSE_KEY = DeferredTaskContext.class.getName().concat(".httpServletResponse");
     public static final String DEFERRED_DO_NOT_RETRY_KEY = DeferredTaskContext.class.getName().concat(".doNotRetry");
     public static final String DEFERRED_MARK_RETRY_KEY = DeferredTaskContext.class.getName().concat(".markRetry");
-    private static final DateFormat ISO_DATE_FORMAT;
 
     private static final String CLOUDTASKS_API_ROOT_URL_PROPERTY = "cloudtasks.api.root.url";
     private static final String CLOUDTASKS_API_KEY_PROPERTY = "cloudtasks.api.key";
     private static final String CLOUDTASKS_API_DEFAULT_PARENT = "cloudtasks.api.default.parent";
-
-    static {
-        ISO_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
-        ISO_DATE_FORMAT.setTimeZone(TimeZone.getTimeZone("UTC"));
-    }
 
     private DeferredTaskContext() {
     }
@@ -176,12 +170,14 @@ public final class DeferredTaskContext {
     /**
      * Add seconds to Now() and serialize it to ISO 8601
      *
-     * @param seconds
+     * @param milliseconds
      * @return date in ISO 8601
      */
-    public static String getScheduleTime(final int seconds) {
+    public static String getScheduleTime(final long milliseconds) {
         final Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.SECOND, seconds);
-        return ISO_DATE_FORMAT.format(calendar.getTime());
+        calendar.setTimeInMillis(milliseconds);
+        final DateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sssX");
+        isoDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        return isoDateFormat.format(calendar.getTime());
     }
 }
