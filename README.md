@@ -17,5 +17,9 @@ Bind `DeferredTaskServlet` to `DeferredTaskContext.DEFAULT_DEFERRED_URL` (`/_ah/
 
 # Changelog
 
+* 1.0.5 - Actualize README, minor fix JavaDoc
+* 1.0.4 - Fix bug related to dateTimeFormat 
+* 1.0.3 - Actualize code according to new API of Cloud Tasks
+* 1.0.2 - Use `google-api-services-cloudtasks` from maven central repo 
 * 1.0.1 - Fallback to no credentials if can't create application default credentials
 * 1.0.0 - Initial release

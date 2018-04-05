@@ -170,7 +170,7 @@ public final class DeferredTaskContext {
     /**
      * Add seconds to Now() and serialize it to ISO 8601
      *
-     * @param milliseconds
+     * @param milliseconds Milliseconds from 1970-01-01 00:00:00.000
      * @return date in ISO 8601
      */
     public static String getScheduleTime(final long milliseconds) {
