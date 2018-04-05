@@ -1,3 +1,5 @@
+[![Build Status](https://jenkins.cloudaware.com/buildStatus/icon?style=plastic&job=deferred)](https://jenkins.cloudaware.com/job/deferred)
+
 # About
 
 Cloud Tasks compatible implementation of [Deferred Tasks](https://cloud.google.com/appengine/docs/standard/java/taskqueue/push/creating-tasks#using_the_deferred_instead_of_a_worker_service) for java
