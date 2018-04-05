@@ -10,10 +10,11 @@ import java.io.ObjectStreamClass;
 import java.lang.reflect.Proxy;
 
 /**
- * Replacement DefferdTaskServlet for flex and guice
- * in WarModule must be: <br/>
- * {@code bind(DeferredTaskServlet.class).in(Singleton.class);}<br/>
- * {@code serve(DeferredTaskContext.DEFAULT_DEFERRED_URL).with(DeferredTaskServlet.class);}<br/>
+ * Replacement DefferdTaskServlet for flex and guice in WarModule must be:
+ * <p>
+ * {@code bind(DeferredTaskServlet.class).in(Singleton.class);}
+ * <p>
+ * {@code serve(DeferredTaskContext.DEFAULT_DEFERRED_URL).with(DeferredTaskServlet.class);}
  */
 
 public final class DeferredTaskServlet extends HttpServlet {
