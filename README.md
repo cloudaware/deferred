@@ -19,6 +19,7 @@ Bind `DeferredTaskServlet` to `DeferredTaskContext.DEFAULT_DEFERRED_URL` (`/_ah/
 
 # Changelog
 
+* 1.0.7 - Change google-api-services-cloudtasks version
 * 1.0.6 - Change google-api-client version
 * 1.0.5 - Actualize README, minor fix JavaDoc
 * 1.0.4 - Fix bug related to dateTimeFormat 

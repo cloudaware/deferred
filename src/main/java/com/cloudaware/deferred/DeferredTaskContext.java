@@ -5,12 +5,12 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.services.cloudtasks.v2beta2.CloudTasks;
-import com.google.api.services.cloudtasks.v2beta2.CloudTasksScopes;
-import com.google.api.services.cloudtasks.v2beta2.model.AppEngineHttpRequest;
-import com.google.api.services.cloudtasks.v2beta2.model.AppEngineRouting;
-import com.google.api.services.cloudtasks.v2beta2.model.CreateTaskRequest;
-import com.google.api.services.cloudtasks.v2beta2.model.Task;
+import com.google.api.services.cloudtasks.v2beta3.CloudTasks;
+import com.google.api.services.cloudtasks.v2beta3.CloudTasksScopes;
+import com.google.api.services.cloudtasks.v2beta3.model.AppEngineHttpRequest;
+import com.google.api.services.cloudtasks.v2beta3.model.AppEngineRouting;
+import com.google.api.services.cloudtasks.v2beta3.model.CreateTaskRequest;
+import com.google.api.services.cloudtasks.v2beta3.model.Task;
 import com.google.common.collect.Maps;
 
 import javax.servlet.http.HttpServlet;
@@ -102,9 +102,9 @@ public final class DeferredTaskContext {
                 task.setAppEngineHttpRequest(new AppEngineHttpRequest());
             }
             task.getAppEngineHttpRequest().setHeaders(headers);
-            task.getAppEngineHttpRequest().setRelativeUrl(DEFAULT_DEFERRED_URL);
+            task.getAppEngineHttpRequest().setRelativeUri(DEFAULT_DEFERRED_URL);
             task.getAppEngineHttpRequest().setHttpMethod("POST");
-            task.getAppEngineHttpRequest().setPayload(com.google.api.client.util.Base64.encodeBase64String(convertDeferredTaskToPayload(deferredTask)));
+            task.getAppEngineHttpRequest().setBody(com.google.api.client.util.Base64.encodeBase64String(convertDeferredTaskToPayload(deferredTask)));
             /**
              * Cloud Task Routing Start
              */

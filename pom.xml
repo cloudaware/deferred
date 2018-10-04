@@ -6,7 +6,7 @@
 
     <artifactId>deferred</artifactId>
     <groupId>com.cloudaware</groupId>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,7 +16,7 @@
         <dependency>
             <groupId>com.google.apis</groupId>
             <artifactId>google-api-services-cloudtasks</artifactId>
-            <version>v2beta2-rev11-1.23.0</version>
+            <version>v2beta3-rev5-1.23.0</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
