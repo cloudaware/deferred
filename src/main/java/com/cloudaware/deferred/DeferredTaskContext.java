@@ -5,12 +5,12 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.services.cloudtasks.v2beta3.CloudTasks;
-import com.google.api.services.cloudtasks.v2beta3.CloudTasksScopes;
-import com.google.api.services.cloudtasks.v2beta3.model.AppEngineHttpRequest;
-import com.google.api.services.cloudtasks.v2beta3.model.AppEngineRouting;
-import com.google.api.services.cloudtasks.v2beta3.model.CreateTaskRequest;
-import com.google.api.services.cloudtasks.v2beta3.model.Task;
+import com.google.api.services.cloudtasks.v2.CloudTasks;
+import com.google.api.services.cloudtasks.v2.CloudTasksScopes;
+import com.google.api.services.cloudtasks.v2.model.AppEngineHttpRequest;
+import com.google.api.services.cloudtasks.v2.model.AppEngineRouting;
+import com.google.api.services.cloudtasks.v2.model.CreateTaskRequest;
+import com.google.api.services.cloudtasks.v2.model.Task;
 import com.google.common.collect.Maps;
 
 import javax.servlet.http.HttpServlet;
