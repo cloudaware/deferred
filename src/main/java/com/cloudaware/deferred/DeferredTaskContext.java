@@ -38,6 +38,7 @@ public final class DeferredTaskContext {
     private static final String CLOUDTASKS_API_ROOT_URL_PROPERTY = "cloudtasks.api.root.url";
     private static final String CLOUDTASKS_API_KEY_PROPERTY = "cloudtasks.api.key";
     private static final String CLOUDTASKS_API_DEFAULT_PARENT = "cloudtasks.api.default.parent";
+    private static final String CLOUDTASKS_GZIP_DISABLE = "cloudtasks.gzip.disable";
 
     private DeferredTaskContext() {
     }
@@ -147,10 +148,11 @@ public final class DeferredTaskContext {
             } else {
                 queue = queueName;
             }
+            final boolean gzipDisabled = "true".equalsIgnoreCase(System.getProperty(CLOUDTASKS_GZIP_DISABLE));
             return cloudTasks.projects().locations().queues().tasks().create(
                     queue,
                     new CreateTaskRequest().setTask(task)
-            ).setKey(apiKey).execute();
+            ).setDisableGZipContent(gzipDisabled).setKey(apiKey).execute();
         } catch (GeneralSecurityException | IOException e) {
             throw new RuntimeException(e);
         }
