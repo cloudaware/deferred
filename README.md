@@ -19,6 +19,7 @@ Bind `DeferredTaskServlet` to `DeferredTaskContext.DEFAULT_DEFERRED_URL` (`/_ah/
 
 # Changelog
 
+* 1.0.10 - Migrate to Jakarta EE
 * 1.0.9 - Added support for disabling GZip at call ot cloudtask
 * 1.0.8 - Change google-api-services-cloudtasks version to v2-rev7-1.25.0
 * 1.0.7 - Change google-api-services-cloudtasks version
